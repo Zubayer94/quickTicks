@@ -15,9 +15,10 @@ const LoggerWrapper = (): Logger => {
     ],
     format: format.combine(
       format.colorize(),
-      format.prettyPrint(),
       format.timestamp(),
-      format.json()
+      // format.json(),
+      format.splat(),
+    format.simple(),
     ),
     
     exitOnError: false,
