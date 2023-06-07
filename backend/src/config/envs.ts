@@ -11,8 +11,6 @@ export const DB_PASS = process.env.DB_PASS
 export const DB_LOGGING = process.env.DB_LOGGING
 export const DB_FORCE = process.env.DB_FORCE
 
-
-
 // const envs =  {
 //     PORT: process.env.PORT,
 //     NODE_ENV: process.env.NODE_ENV,
