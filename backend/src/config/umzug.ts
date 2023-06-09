@@ -11,7 +11,7 @@ export const migrator = new Umzug({
 	storage: new SequelizeStorage({sequelize}),
 	logger: console,
 	create: {
-		folder: 'migrations',
+		folder: 'src/api/migrations',
 		template: filepath => [
 			// read template from filesystem
 			[filepath, fs.readFileSync(path.join(__dirname, '../api/template/umzugMigrationTemplate.ts')).toString()],
@@ -31,6 +31,13 @@ export const seeder = new Umzug({
 		modelName: 'seeder_meta',
 	}),
 	logger: console,
+	create: {
+		folder: 'src/api/seeders',
+		template: filepath => [
+			// read template from filesystem
+			[filepath, fs.readFileSync(path.join(__dirname, '../api/template/umzugSeederTemplate.ts')).toString()],
+		],
+	},
 });
 
 export type Seeder = typeof seeder._types.migration;
