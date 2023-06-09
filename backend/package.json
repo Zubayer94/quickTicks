@@ -8,9 +8,14 @@
     "start": "node dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:migcreate": "node migrator create --folder src/api/migrations/ --name ",
+    "db:mig:create": "node migrator create --name ",
     "db:migrate": "node migrator up ",
-    "db:revert": "node migrator down "
+    "db:mig:revert": "node migrator down ",
+    "db:mig:fresh": "node migrator down --to 0 && node migrator up",
+    "db:seed:create": "node seed create --name ",
+    "db:seed": "node migrator up ",
+    "db:seed:revert": "node migrator down ",
+    "db:seed:revertall": "node migrator down --to 0"
   },
   "author": "",
   "license": "ISC",
