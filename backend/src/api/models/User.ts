@@ -1,19 +1,35 @@
-import { Model, Optional } from 'sequelize';
+import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional, ForeignKey } from 'sequelize';
+import db from '../../config/database';
 
-// We don't recommend doing this. Read on for the new way of declaring Model typings.
+class Address extends Model<
+  InferAttributes<Address>,
+  InferCreationAttributes<Address>
+> {
+  declare id: CreationOptional<number>;
+  // declare userId: ForeignKey<User['id']>;
+  declare address: string;
 
-type UserAttributes = {
-  id: number,
-  name: string,
-  // other attributes...
-};
-
-/*  
-    we're telling the Model that 'id' is optional when creating an instance of the model (such as using Model.create()). 
-*/
-type UserCreationAttributes = Optional<UserAttributes, 'id'>;
-
-class User extends Model<UserAttributes, UserCreationAttributes> {
-  declare id: number;
-  declare name: string;
+  // createdAt can be undefined during creation
+  declare createdAt: CreationOptional<Date>;
+  // updatedAt can be undefined during creation
+  declare updatedAt: CreationOptional<Date>;
 }
+
+Address.init(
+  {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      primaryKey: true,
+      allowNull: false,
+    },
+    address: {
+      type: new DataTypes.STRING(128),
+      allowNull: false
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+  },
+  {
+    sequelize: db
+  }
+);
