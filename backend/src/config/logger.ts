@@ -6,11 +6,11 @@ const LoggerWrapper = (): Logger => {
       new transports.Console(),
       new transports.File({
           level: 'warn',
-          filename: 'logsWarnings.log'
+          filename: 'logs/logsWarnings.log'
       }),
       new transports.File({
           level: 'error',
-          filename: 'logsErrors.log'
+          filename: 'logs/logsErrors.log'
       })
     ],
     format: format.combine(
