@@ -14,7 +14,7 @@ export const migrator = new Umzug({
 		folder: 'src/api/migrations',
 		template: filepath => [
 			// read template from filesystem
-			[filepath, fs.readFileSync(path.join(__dirname, '../api/template/umzugMigrationTemplate.ts')).toString()],
+			[filepath, fs.readFileSync(path.join(__dirname, '../api/templates/umzugMigrationTemplate.ts')).toString()],
 		],
 	},
 });
@@ -35,7 +35,7 @@ export const seeder = new Umzug({
 		folder: 'src/api/seeders',
 		template: filepath => [
 			// read template from filesystem
-			[filepath, fs.readFileSync(path.join(__dirname, '../api/template/umzugSeederTemplate.ts')).toString()],
+			[filepath, fs.readFileSync(path.join(__dirname, '../api/templates/umzugSeederTemplate.ts')).toString()],
 		],
 	},
 });
