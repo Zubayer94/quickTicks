@@ -1,7 +1,7 @@
 // import all interfaces
 import { IWrite } from '../../interfaces/IWrite';
 import { IRead } from '../../interfaces/IRead';
-import { Mutation, Setter } from '../../types/crudOperations';
+import { Mutation, Setter, Getter } from '../../types/crudOperations';
 
 // that class only can be extended
 // export abstract class BaseRepository<T extends Model<InferAttributes<T>, InferCreationAttributes<T>>> 
@@ -36,11 +36,16 @@ export abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
     throw new Error('Method not implemented.');
   }
 
-  find(item: T): Promise<T[]> {
+  getAll(item: T): Promise<T[]> {
     throw new Error('Method not implemented.');
   }
 
-  findOne(id: string): Promise<T> {
-    throw new Error('Method not implemented.');
+  findOne: Getter<string, T | null> = async id => {
+    const item = await  this._model.findOne({
+      where: {
+        id: id
+      }
+    })
+    return item;
   }
 }
