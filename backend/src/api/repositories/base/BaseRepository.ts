@@ -32,11 +32,16 @@ export abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
     return !!result;
   }
 
-  delete(id: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
+  delete: Setter<string, boolean> = async(id: string) => {
+    const removed = await this._model.destroy({
+      where: {
+        id: id,
+      }
+    })
+    return !!removed
   }
 
-  getAll(item: T): Promise<T[]> {
+  getAll: Getter<void, T[] | null> = async() => {
     throw new Error('Method not implemented.');
   }
 
